@@ -11,10 +11,14 @@ url = 'https://en.wikipedia.org/wiki/Python_(programming_language)'
 # r.text
 # print(r.text)
 print('read website')
-values = {'s':'basics', 'submit':'search' }
-data = urllib.parse.urlencode(values)
-data = data.encode('utf-8')
-req = urllib.request.Request(url, data)
+
+# values = {'s':'basics', 'submit':'search' }
+# data = urllib.parse.urlencode(values)
+# data = data.encode('utf-8')
+
+# req = urllib.request.Request(url, data)
+
+req = urllib.request.Request( url )
 resp = urllib.request.urlopen(req)
 respData = resp.read()
 
