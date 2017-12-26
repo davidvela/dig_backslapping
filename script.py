@@ -63,7 +63,7 @@ def get_fb_token2(app_id, app_secret, prof):
 # token = get_fb_token2(appid, appsecret, profid)
 # token : https://developers.facebook.com/tools/explorer
 
-token = "daskla"
+token = "kasjdlkasj"
 graph = facebook.GraphAPI(token)
 profile = graph.get_object("me")
 print(profile)
@@ -87,17 +87,53 @@ while(True):
     else: 
         break
 
+postID = "10214714467041135_10215338601404104"
+comments = graph.get_connections(id=postID, connection_name='comments')
+print("\n\n comments")
+print(comments)
+
+# christmas wishes: 
+message = "Merry Chrismas person: "
+for i in range(2):
+    print( message + str(i))
+    # graph.put_object(parent_object='me', connection_name='feed', message=message + str(i))
+    # facebook postID: 2F10215338601404104
+    # graph.put_object(parent_object=postID, connection_name='comments',   message= message + str(i))
+
+s_user = "@Rhema asdkjsalk"
+s_user2 = "rhema..."
+message = "Merry Chrismas  " + s_user
+# graph.put_object(parent_object=s_user, connection_name='feed', message=message ) # I need authorization!!! 
+
+# graph.put_object(parent_object="me", connection_name='feed', message=message )  # but I cant post in my wall and mention people... 
+
+# graph.put_object(
+#    parent_object="me",
+#    connection_name="feed",
+#    message="This is not a great website. Everyone should visit it. -- test 4",
+#    link="https://www.facebook.com/" + s_user2)
+
+# SEARCH FOR USERS
+# users = graph.search(type='user',q=s_user )
+# for user in users['data']:
+#     print('%s %s' % (user['id'],user['name'].encode()))
+
 print("\n OTHER:")
 feed =  graph.get_object("me/books") #photos, books, feed
 print(feed)
 
 print("\n OTHER2:")
-posts = graph.get_connections(profile['id'], 'posts')
-print(posts)
+# posts = graph.get_connections(profile['id'], 'posts')
+posts =  graph.get_object("me/posts") #photos, books, feed
+print(type(posts))
+# print(posts)
+for p in posts['data']: 
+    print(str(p['message']))
 
 # post a comment in my wall 
 #graph.put_object(parent_object='me', connection_name='feed', message='Hello, world from Python Facebook-sdk ')
 # graph.put_object(parent_object='rhema.rajendram', connection_name='feed', message='Hello, world from Python Facebook-sdk ')
+
 
 
 # I can't get my list of friends unless they accept with the user_friend policies 
